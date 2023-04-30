@@ -272,7 +272,7 @@ const Home = ({ match }) => {
 
                             </div>
                         </section >
-                        {resPerPage <= count&&
+                        {resPerPage <= count &&
                             (
                                 <div className="d-flex justify-content-center mt-5">
                                     <Pagination
