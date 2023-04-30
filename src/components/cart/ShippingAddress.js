@@ -23,7 +23,7 @@ const ShippingAddress = ({ match, history }) => {
     useEffect(() => {
         const fetchAddresses = async () => {
             console.log('id')
-            const { data } = await axios.get('/api/v1/me/address');
+            const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/me/address');
             setAddresses(data.address);
             console.log(data.address)
         };
@@ -34,7 +34,7 @@ const ShippingAddress = ({ match, history }) => {
 
     const dispatch = useDispatch();
     const handleSelectAddress = async (id) => {
-        const { data } = await axios.get(`/api/v1/me/address/${id}`);
+        const { data } = await axios.get(`https://akhil-shopping-mart-api.onrender.com/api/v1/me/address/${id}`);
         setAddress(data.address.address);
         setCity(data.address.city);
         setPostalCode(data.address.postalCode);
