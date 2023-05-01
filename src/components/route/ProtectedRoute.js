@@ -8,7 +8,7 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
 
     return (
         <Fragment>
-            {loading === false && (
+         
                 <Route
                     {...rest}
                     render={props => {
@@ -23,7 +23,7 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
                         return <Component {...props} />
                     }}
                 />
-            )}
+         
         </Fragment>
     )
 }
