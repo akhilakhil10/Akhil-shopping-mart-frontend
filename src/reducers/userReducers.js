@@ -55,7 +55,7 @@ export const authReducer = (state = { user: {} }, action) => {
         case LOAD_USER_REQUEST:
             console.log("user request");
             return {
-                loading: false,
+                loading: true,
                 isAuthenticated: false,
             }
 
