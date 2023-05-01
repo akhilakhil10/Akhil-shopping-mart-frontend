@@ -41,9 +41,6 @@ import {
     UPDATE_USER_ADDRESS_REQUEST,
     UPDATE_USER_ADDRESS_SUCCESS,
     UPDATE_USER_ADDRESS_FAIL,
-    DELETE_USER_ADDRESS_REQUEST,
-    DELETE_USER_ADDRESS_SUCCESS,
-    DELETE_USER_ADDRESS_FAIL,
     CLEAR_ERRORS
 } from '../constants/userConstants'
 
@@ -51,6 +48,7 @@ import {
 export const login = (email, password) => async (dispatch) => {
     try {
 
+        console.log("hello user");
         dispatch({ type: LOGIN_REQUEST })
 
         const config = {
@@ -78,6 +76,7 @@ export const login = (email, password) => async (dispatch) => {
 export const register = (userData) => async (dispatch) => {
     try {
 
+        console.log("hello reogiste")
         dispatch({ type: REGISTER_USER_REQUEST })
 
         const config = {
@@ -87,8 +86,9 @@ export const register = (userData) => async (dispatch) => {
         }
 
         const { data } = await axios.post('https://akhil-shopping-mart-api.onrender.com/api/v1/register', userData, config)
-
+        console.log("hello reogiste")
         dispatch({
+          
             type: REGISTER_USER_SUCCESS,
             payload: data.user
         })
@@ -105,9 +105,11 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
     try {
 
+        console.log('user request')
         dispatch({ type: LOAD_USER_REQUEST })
 
         const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/me')
+        console.log(data,'load')
         console.log(data);
         if (!data) {
             throw new Error('Data not found in API response');
@@ -119,6 +121,7 @@ export const loadUser = () => async (dispatch) => {
         })
 
     } catch (error) {
+        console.log('user error')
         dispatch({
             type: LOAD_USER_FAIL,
             payload: error.response.data.message || error.message
