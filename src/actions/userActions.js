@@ -51,6 +51,7 @@ import {
 export const login = (email, password) => async (dispatch) => {
     try {
 
+        console.log("hello user");
         dispatch({ type: LOGIN_REQUEST })
 
         const config = {
@@ -59,7 +60,7 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/login', { email, password }, config)
+        const { data } = await axios.post('https://akhil-shopping-mart-api.onrender.com/api/v1/login', { email, password }, config)
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -78,6 +79,7 @@ export const login = (email, password) => async (dispatch) => {
 export const register = (userData) => async (dispatch) => {
     try {
 
+        console.log("hello reogiste")
         dispatch({ type: REGISTER_USER_REQUEST })
 
         const config = {
@@ -86,9 +88,10 @@ export const register = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/register', userData, config)
-
+        const { data } = await axios.post('https://akhil-shopping-mart-api.onrender.com/api/v1/register', userData, config)
+        console.log("hello reogiste")
         dispatch({
+          
             type: REGISTER_USER_SUCCESS,
             payload: data.user
         })
@@ -105,9 +108,11 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
     try {
 
+        console.log('user request')
         dispatch({ type: LOAD_USER_REQUEST })
 
-        const { data } = await axios.get('/api/v1/me')
+        const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/me')
+        console.log(data,'load')
         console.log(data);
         if (!data) {
             throw new Error('Data not found in API response');
@@ -119,6 +124,7 @@ export const loadUser = () => async (dispatch) => {
         })
 
     } catch (error) {
+        console.log('user error')
         dispatch({
             type: LOAD_USER_FAIL,
             payload: error.response.data.message || error.message
@@ -138,7 +144,7 @@ export const updateProfile = (userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put('/api/v1/me/update', userData, config)
+        const { data } = await axios.put('https://akhil-shopping-mart-api.onrender.com/api/v1/me/update', userData, config)
 
         dispatch({
             type: UPDATE_PROFILE_SUCCESS,
@@ -165,7 +171,7 @@ export const updatePassword = (passwords) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put('/api/v1/password/update', passwords, config)
+        const { data } = await axios.put('https://akhil-shopping-mart-api.onrender.com/api/v1/password/update', passwords, config)
         console.log(data);
         dispatch({
             type: UPDATE_PASSWORD_SUCCESS,
@@ -192,7 +198,7 @@ export const forgotPassword = (email) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/password/forgot', email, config)
+        const { data } = await axios.post('https://akhil-shopping-mart-api.onrender.com/api/v1/password/forgot', email, config)
 
         dispatch({
             type: FORGOT_PASSWORD_SUCCESS,
@@ -219,7 +225,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`/api/v1/password/reset/${token}`, passwords, config)
+        const { data } = await axios.put(`https://akhil-shopping-mart-api.onrender.com/api/v1/password/reset/${token}`, passwords, config)
 
         dispatch({
             type: NEW_PASSWORD_SUCCESS,
@@ -238,7 +244,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     try {
 
-        await axios.get('/api/v1/logout')
+        await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/logout')
 
         dispatch({
             type: LOGOUT_SUCCESS,
@@ -258,7 +264,7 @@ export const allUsers = () => async (dispatch) => {
 
         dispatch({ type: ALL_USERS_REQUEST })
 
-        const { data } = await axios.get('/api/v1/admin/users')
+        const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/admin/users')
 
         dispatch({
             type: ALL_USERS_SUCCESS,
@@ -285,7 +291,7 @@ export const updateUser = (id, userData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`/api/v1/admin/user/${id}`, userData, config)
+        const { data } = await axios.put(`https://akhil-shopping-mart-api.onrender.com/api/v1/admin/user/${id}`, userData, config)
 
         dispatch({
             type: UPDATE_USER_SUCCESS,
@@ -307,7 +313,7 @@ export const getUserDetails = (id) => async (dispatch) => {
         dispatch({ type: USER_DETAILS_REQUEST })
 
 
-        const { data } = await axios.get(`/api/v1/admin/user/${id}`)
+        const { data } = await axios.get(`https://akhil-shopping-mart-api.onrender.com/api/v1/admin/user/${id}`)
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -328,7 +334,7 @@ export const deleteUser = (id) => async (dispatch) => {
 
         dispatch({ type: DELETE_USER_REQUEST })
 
-        const { data } = await axios.delete(`/api/v1/admin/user/${id}`)
+        const { data } = await axios.delete(`https://akhil-shopping-mart-api.onrender.com/api/v1/admin/user/${id}`)
 
         dispatch({
             type: DELETE_USER_SUCCESS,
@@ -352,7 +358,7 @@ export const newUserAddress = (addressData) => async (dispatch) => {
             },
         };
 
-        const { data } = await axios.put('/api/v1/me/address', addressData, config);
+        const { data } = await axios.put('https://akhil-shopping-mart-api.onrender.com/api/v1/me/address', addressData, config);
 
         dispatch({
             type: CREATE_USER_ADDRESS_SUCCESS,
@@ -390,7 +396,7 @@ export const updateUserAddress = (id) => async (dispatch, getState) => {
             }
         };
 
-        const { data } = await axios.put(`/api/v1/me/address/${aid}`, userData, config);
+        const { data } = await axios.put(`https://akhil-shopping-mart-api.onrender.com/api/v1/me/address/${aid}`, userData, config);
 
         dispatch({ type: UPDATE_USER_ADDRESS_SUCCESS, payload: data.success });
     } catch (error) {

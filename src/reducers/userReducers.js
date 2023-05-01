@@ -44,9 +44,6 @@ import {
     UPDATE_USER_ADDRESS_REQUEST,
     UPDATE_USER_ADDRESS_SUCCESS,
     UPDATE_USER_ADDRESS_FAIL,
-    DELETE_USER_ADDRESS_REQUEST,
-    DELETE_USER_ADDRESS_SUCCESS,
-    DELETE_USER_ADDRESS_FAIL,
     CLEAR_ERRORS
 } from '../constants/userConstants'
 
@@ -56,14 +53,17 @@ export const authReducer = (state = { user: {} }, action) => {
         case LOGIN_REQUEST:
         case REGISTER_USER_REQUEST:
         case LOAD_USER_REQUEST:
+            console.log("user request");
             return {
-                loading: true,
+                loading: false,
                 isAuthenticated: false,
             }
 
         case LOGIN_SUCCESS:
         case REGISTER_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
+            console.log("user success");
+
             return {
                 ...state,
                 loading: false,
@@ -79,6 +79,7 @@ export const authReducer = (state = { user: {} }, action) => {
             }
 
         case LOAD_USER_FAIL:
+            console.log("user fail");
             return {
                 loading: false,
                 isAuthenticated: false,

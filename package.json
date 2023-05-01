@@ -57,5 +57,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://127.0.0.1:10000"
+  "proxy":"https://akhil-shopping-mart-api.onrender.com"
 }
