@@ -66,7 +66,6 @@ export const myOrdersReducer = (state = { orders: [] }, action) => {
             
             return {
                 ...state,
-                loading: true
             }
 
         case MY_ORDERS_SUCCESS:
@@ -101,7 +100,6 @@ export const orderDetailsReducer = (state = { order: {} }, action) => {
 
         case ORDER_DETAILS_REQUEST:
             return {
-                loading: true
             }
 
         case ORDER_DETAILS_SUCCESS:
