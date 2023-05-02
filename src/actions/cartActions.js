@@ -5,7 +5,7 @@ import {
      SAVE_SHIPPING_INFO, CLEAR_CART} from '../constants/cartConstants'
 
 export const addItemToCart = (id, quantity) => async (dispatch, getState) => {
-    const { data } = await axios.get(`/api/v1/products/${id}`)
+    const { data } = await axios.get(`https://akhil-shopping-mart-api.onrender.com/api/v1/products/${id}`)
     const image = data.product.images && data.product.images[0] ? data.product.images[0].url : null;
     dispatch({
         type: ADD_TO_CART,
