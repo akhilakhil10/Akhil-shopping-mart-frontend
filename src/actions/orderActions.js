@@ -53,7 +53,7 @@ export const myOrders = () => async (dispatch) => {
     try {
         dispatch({ type: MY_ORDERS_REQUEST });
 
-        const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/orders/me')
+        const { data } = await axios.get('/api/v1/orders/me')
 
         dispatch({
             type: MY_ORDERS_SUCCESS,
