@@ -5,7 +5,7 @@
     for(let i = 0; i < cookieArr.length; i++) {
       let cookie = cookieArr[i].trim();
 
-      console.log('cookie',cookie)
+      console.log('cookie',cookie);
       if (cookie.indexOf(cookieName) === 0) {
         return cookie.substring(cookieName.length, cookie.length);
       }
