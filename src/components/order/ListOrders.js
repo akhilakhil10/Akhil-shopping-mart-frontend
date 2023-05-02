@@ -117,7 +117,7 @@ const ListOrders = () => {
 
             <h1 className="my-5">My Orders</h1>
 
-            {loading ? <Loader /> : (
+        
                 <MDBDataTable
                     data={setOrders()}
                     className="table-no-no-more"
@@ -127,7 +127,7 @@ const ListOrders = () => {
                     noBottomColumns
                    
                 />
-            )}
+           
 
         </Fragment>
     )

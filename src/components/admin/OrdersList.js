@@ -105,7 +105,7 @@ const OrdersList = ({ history }) => {
                     <Fragment>
                         <h1 className="my-5">All Orders</h1>
 
-                        {loading ? <Loader /> : (
+                       
                             <MDBDataTable
                                 data={setOrders()}
                                 className="px-3"
@@ -114,7 +114,7 @@ const OrdersList = ({ history }) => {
                                 hover
                                 noBottomColumns
                             />
-                        )}
+                       
 
                     </Fragment>
                 </div>

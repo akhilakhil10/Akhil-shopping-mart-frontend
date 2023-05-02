@@ -55,7 +55,7 @@ export const authReducer = (state = { user: {} }, action) => {
         case LOAD_USER_REQUEST:
             console.log("user request");
             return {
-                loading: true,
+                loading:true,
                 isAuthenticated: false,
             }
 
@@ -121,8 +121,8 @@ export const userReducer = (state = {}, action) => {
         case UPDATE_USER_REQUEST:
         case DELETE_USER_REQUEST:
             return {
+                loading:true,
                 ...state,
-                loading: true
             }
 
         case UPDATE_PROFILE_SUCCESS:
@@ -183,7 +183,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
         case NEW_PASSWORD_REQUEST:
             return {
                 ...state,
-                loading: true,
+loading:true,
                 error: null
             }
 
@@ -225,7 +225,7 @@ export const allUsersReducer = (state = { users: [] }, action) => {
         case ALL_USERS_REQUEST:
             return {
                 ...state,
-                loading: true,
+                loading:true
             }
 
         case ALL_USERS_SUCCESS:
