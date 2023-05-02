@@ -63,7 +63,6 @@ export const authReducer = (state = { user: {} }, action) => {
         case REGISTER_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
             console.log("user success");
-
             return {
                 ...state,
                 loading: false,

@@ -8,14 +8,14 @@ const Address = () => {
 
     useEffect(() => {
         const fetchAddresses = async () => {
-            const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/me/address');
+            const { data } = await axios.get('/api/v1/me/address');
             setAddresses(data.address);
         };
         fetchAddresses();
     }, []);
 
     const handleDelete = async (id) => {
-        await axios.delete(`https://akhil-shopping-mart-api.onrender.com/api/v1/me/address/${id}`);
+        await axios.delete(`/api/v1/me/address/${id}`);
         setAddresses(addresses.filter((address) => address._id !== id));
     };
     // const id=addresses.address._id

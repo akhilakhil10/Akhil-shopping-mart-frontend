@@ -54,16 +54,17 @@ import axios from 'axios'
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
-
+ 
 function App() {
 
+  const url="https://akhil-shopping-mart-api.onrender.com"
   const [stripeApiKey, setStripeApiKey] = useState('');
 
   useEffect(() => {
     store.dispatch(loadUser())
 
     async function getStripApiKey() {
-      const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/stripeapi');
+      const { data } = await axios.get('/api/v1/stripeapi');
 
       console.log(data.stripeApiKey);
       setStripeApiKey(data.stripeApiKey)
@@ -107,11 +108,11 @@ function App() {
           <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />
           <ProtectedRoute path="/me" component={Profile} exact />
-          <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+          <Route path="/me/update" component={UpdateProfile} exact />
           <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
 
-          <ProtectedRoute path="/orders/me" component={ListOrders} exact />
-          <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
+          <Route path="/orders/me" component={ListOrders} exact />
+          <Route path="/order/:id" component={OrderDetails} exact />
         </div>
 
         <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
