@@ -58,7 +58,7 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/login', { email, password }, config)
+        const { data } = await axios.post('https://akhil-shopping-mart-api.onrender.com/api/v1/login', { email, password }, config)
 
         dispatch({
             type: LOGIN_SUCCESS,
