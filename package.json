@@ -56,11 +56,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-<<<<<<< HEAD
   },
   "proxy":"https://akhil-shopping-mart-api.onrender.com"
-  
-=======
+
   }
->>>>>>> 87a042087cf2139b38f6fed72eef43c64d5857d8
-}
+
