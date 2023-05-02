@@ -56,7 +56,7 @@ import { loadStripe } from '@stripe/stripe-js'
  
 function App() {
 
-  const url=process.env.REACT_APP_API_URL;
+  const url=process.env.REACT_APP_API_URL|| "https://akhil-shopping-mart-api.onrender.com";
   const [stripeApiKey, setStripeApiKey] = useState('');
 
   useEffect(() => {
@@ -106,7 +106,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/password/forgot" component={ForgotPassword} exact />
           <Route path="/password/reset/:token" component={NewPassword} exact />
-          <ProtectedRoute path="/me" component={Profile} exact />
+          <Route path="/me" component={Profile} exact />
           <Route path="/me/update" component={UpdateProfile} exact />
           <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
 
