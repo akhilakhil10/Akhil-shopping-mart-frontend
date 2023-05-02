@@ -108,10 +108,12 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
     try {
       console.log('user request');
+      console.log(getCookie,"cookie")
       dispatch({ type: LOAD_USER_REQUEST });
   
       const token = getCookie('token');
-  
+      console.log(token,"token")
+
       if (!token) {
         throw new Error('No token found in cookie');
       }
