@@ -109,18 +109,16 @@ export const loadUser = () => async (dispatch) => {
         console.log('user request')
         dispatch({ type: LOAD_USER_REQUEST })
 
-        const { data } = await axios.get(`https://akhil-shopping-mart-api.onrender.com/api/v1/me`)
+        const { data } = await axios.get('https://akhil-shopping-mart-api.onrender.com/api/v1/me')
         console.log(data,'load')
         console.log(data);
         if (!data) {
             throw new Error('Data not found in API response');
         }
-
         dispatch({
             type: LOAD_USER_SUCCESS,
             payload: data.user
         })
-
     } catch (error) {
         console.log('user error')
         dispatch({
