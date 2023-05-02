@@ -56,7 +56,7 @@ import { loadStripe } from '@stripe/stripe-js'
  
 function App() {
 
-  const url=process.env.REACT_APP_API_URL|| "https://akhil-shopping-mart-api.onrender.com";
+  const url=process.env.REACT_APP_API_URL|| "https://akhil-shopping-mart-a.onrender.com";
   const [stripeApiKey, setStripeApiKey] = useState('');
 
   useEffect(() => {
