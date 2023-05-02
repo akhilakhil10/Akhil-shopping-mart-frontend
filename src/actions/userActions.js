@@ -107,8 +107,7 @@ export const loadUser = () => async (dispatch) => {
     try {
 
         console.log('user request')
-        dispatch({ type: LOAD_USER_REQUEST })
-
+        // dispatch({ type: LOAD_USER_REQUEST })
         const { data } = await axios.get(`https://akhil-shopping-mart-a.onrender.com/api/v1/me`)
         console.log(data,'load')
         console.log(data);
