@@ -41,27 +41,27 @@ export const getProducts = (keyword = '', currentPage = 1, price, category) => a
     try {
         dispatch({ type: ALL_PRODUCTS_REQUEST })
 
-        let link = `${url}/api/v1/products?page=${currentPage}`
+        let link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?page=${currentPage}`
 
         console.log(price[0],'price')
 
 
         if (keyword && category && (price[0] !== 0 || price[1] !== 0)) {
-            link = `${url}/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         else if (keyword && category) {
-            link = `${url}/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}`
+            link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}`
         } else if (keyword && (price[0] !== 0 || price[1] !== 0)) {
-            link = `${url}/api/v1/products?keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         } else if (category && (price[0] !== 0 || price[1] !== 0)) {
-            link = `${url}/api/v1/products?category=${category}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?category=${category}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         else if (keyword) {
-            link = `${url}/api/v1/products?keyword=${keyword}&page=${currentPage}`
+            link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}`
         } else if (category) {
-            link = `${url}/api/v1/products?category=${category}&page=${currentPage}`
+            link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?category=${category}&page=${currentPage}`
         } else if (price[0] !== 0 || price[1] !== 0) {
-            link = `${url}/api/v1/products?price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `https://akhil-shopping-mart-api.onrender.com/api/v1/products?price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         const { data } = await axios.get(link)
 
@@ -89,7 +89,7 @@ export const newProduct = (productData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post(`/api/v1/admin/product/new`, productData, config)
+        const { data } = await axios.post(`${url}/api/v1/admin/product/new`, productData, config)
 
         dispatch({
             type: NEW_PRODUCT_SUCCESS,
@@ -110,7 +110,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 
         dispatch({ type: DELETE_PRODUCT_REQUEST })
 
-        const { data } = await axios.delete(`/api/v1/admin/product/${id}`)
+        const { data } = await axios.delete(`${url}/api/v1/admin/product/${id}`)
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
