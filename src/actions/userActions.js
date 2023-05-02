@@ -60,13 +60,13 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { res } = await axios.post(`/api/v1/login`, { email, password }, config)
+        const { data } = await axios.post(`/api/v1/login`, { email, password }, config)
 
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', data.data.token);
 
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: res.data
+            payload: data.user
         })
 
     } catch (error) {
