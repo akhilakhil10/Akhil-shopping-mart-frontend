@@ -1,5 +1,7 @@
 import axios from 'axios'
 import url from '../App'
+import { getCookie } from '../utils/getToken';
+
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
@@ -89,7 +91,7 @@ export const register = (userData) => async (dispatch) => {
         const { data } = await axios.post('/api/v1/register', userData, config)
         console.log("hello reogiste")
         dispatch({
-          
+
             type: REGISTER_USER_SUCCESS,
             payload: data.user
         })
@@ -107,11 +109,27 @@ export const loadUser = () => async (dispatch) => {
     try {
 
         console.log('user request')
+
         dispatch({ type: LOAD_USER_REQUEST })
-        const { data } = axios.get(`/api/v1/me`);
-        console.log(data,'load')
+
+
+        const token = getCookie('token');
+        if (!token) {
+            throw new Error('No token found in cookie');
+        }
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const { data } = axios.get(`/api/v1/me`, config);
+
+        console.log(data, 'load')
         console.log(data);
         console.log('after user request')
+
         if (!data) {
             throw new Error('Data not found in API response');
         }
@@ -123,7 +141,7 @@ export const loadUser = () => async (dispatch) => {
         console.log('user error')
         dispatch({
             type: LOAD_USER_FAIL,
-            payload: error.response.data.message || error.message
+            payload: error.response?.data?.message || error.message,
         })
     }
 }
