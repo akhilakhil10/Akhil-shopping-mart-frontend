@@ -1,6 +1,5 @@
 import axios from 'axios'
 import url from '../App'
-import { getCookie } from '../utils/getToken';
 
 import {
     LOGIN_REQUEST,
@@ -62,8 +61,6 @@ export const login = (email, password) => async (dispatch) => {
 
         const { data } = await axios.post(`/api/v1/login`, { email, password }, config)
 
-        localStorage.setItem('token', data.data.token);
-
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user
@@ -93,7 +90,7 @@ export const register = (userData) => async (dispatch) => {
         const { data } = await axios.post('/api/v1/register', userData, config)
         console.log("hello reogiste")
         dispatch({
-
+          
             type: REGISTER_USER_SUCCESS,
             payload: data.user
         })
@@ -109,45 +106,28 @@ export const register = (userData) => async (dispatch) => {
 // Load user
 export const loadUser = () => async (dispatch) => {
     try {
-      console.log('user request');
-      console.log(getCookie,"cookie")
-      dispatch({ type: LOAD_USER_REQUEST });
-  
-      const token = getCookie('token');
-      console.log(token,"token")
 
-      if (!token) {
-        throw new Error('No token found in cookie');
-      }
-  
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-  
-      const { data } = await axios.get('/api/v1/me', config);
-  
-      console.log(data, 'load');
-      console.log(data);
-      console.log('after user request');
-  
-      if (!data) {
-        throw new Error('Data not found in API response');
-      }
-  
-      dispatch({
-        type: LOAD_USER_SUCCESS,
-        payload: data.user,
-      });
+        console.log('user request')
+        dispatch({ type: LOAD_USER_REQUEST })
+        const { data } = axios.get(`/api/v1/me`);
+        console.log(data,'load')
+        console.log(data);
+        console.log('after user request')
+        if (!data) {
+            throw new Error('Data not found in API response');
+        }
+        dispatch({
+            type: LOAD_USER_SUCCESS,
+            payload: data.user
+        })
     } catch (error) {
-      console.log('user error');
-      dispatch({
-        type: LOAD_USER_FAIL,
-        payload: error.response?.data?.message || error.message,
-      });
+        console.log('user error')
+        dispatch({
+            type: LOAD_USER_FAIL,
+            payload: error.response.data.message || error.message
+        })
     }
-  };
+}
 
 // Update profile
 export const updateProfile = (userData) => async (dispatch) => {
