@@ -50,21 +50,20 @@ import { loadUser } from './actions/userActions'
 import { useSelector } from 'react-redux'
 import store from './store'
 import axios from 'axios'
-
 // Payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
  
 function App() {
 
-  const url="https://akhil-shopping-mart-api.onrender.com"
+  const url=process.env.REACT_APP_API_URL;
   const [stripeApiKey, setStripeApiKey] = useState('');
 
   useEffect(() => {
     store.dispatch(loadUser())
 
     async function getStripApiKey() {
-      const { data } = await axios.get('/api/v1/stripeapi');
+      const { data } = await axios.get(`${url}/api/v1/stripeapi`);
 
       console.log(data.stripeApiKey);
       setStripeApiKey(data.stripeApiKey)
