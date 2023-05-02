@@ -18,7 +18,7 @@ const UpdateAddress = ({ match, history }) => {
   const id=match.params.id
   useEffect(() => {
     const fetchAddress = async () => {
-      const { data } = await axios.get(`/api/v1/me/address/${id}`);
+      const { data } = await axios.get(`https://akhil-shopping-mart-api.onrender.com/api/v1/me/address/${id}`);
       setAddress(data.address.address);
       setCity(data.address.city);
       setPostalCode(data.address.postalCode);
