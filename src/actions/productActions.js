@@ -47,21 +47,21 @@ export const getProducts = (keyword = '', currentPage = 1, price, category) => a
 
 
         if (keyword && category && (price[0] !== 0 || price[1] !== 0)) {
-            link = `https://akhil-shopping-mart-a.onrender.com/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         else if (keyword && category) {
-            link = `https://akhil-shopping-mart-a.onrender.com/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}`
+            link = `/api/v1/products?keyword=${keyword}&category=${category}&page=${currentPage}`
         } else if (keyword && (price[0] !== 0 || price[1] !== 0)) {
-            link = `https://akhil-shopping-mart-a.onrender.com/api/v1/products?keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `/api/v1/products?keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         } else if (category && (price[0] !== 0 || price[1] !== 0)) {
-            link = `https://akhil-shopping-mart-a.onrender.com/api/v1/products?category=${category}&price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `/api/v1/products?category=${category}&price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         else if (keyword) {
-            link = `https://akhil-shopping-mart-a.onrender.com/api/v1/products?keyword=${keyword}&page=${currentPage}`
+            link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`
         } else if (category) {
-            link = `https://akhil-shopping-mart-a.onrender.com/api/v1/products?category=${category}&page=${currentPage}`
+            link = `/api/v1/products?category=${category}&page=${currentPage}`
         } else if (price[0] !== 0 || price[1] !== 0) {
-            link = `https://akhil-shopping-mart-a.onrender.com/api/v1/products?price[lte]=${price[1]}&price[gte]=${price[0]}`
+            link = `/api/v1/products?price[lte]=${price[1]}&price[gte]=${price[0]}`
         }
         const { data } = await axios.get(link)
 
