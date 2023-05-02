@@ -63,7 +63,7 @@ function App() {
     store.dispatch(loadUser())
 
     async function getStripApiKey() {
-      const { data } = await axios.get(`https://akhil-shopping-mart-a.onrender.com/api/v1/stripeapi`);
+      const { data } = await axios.get(`/api/v1/stripeapi`);
 
       console.log(data.stripeApiKey);
       setStripeApiKey(data.stripeApiKey)
