@@ -2,14 +2,16 @@
     const cookieName = `${name}=`;
     const cookieArr = document.cookie.split(';');
   
+    let cookie;
     for(let i = 0; i < cookieArr.length; i++) {
-      let cookie = cookieArr[i].trim();
+      cookie = cookieArr[i].trim();
 
-      console.log('cookie',cookie);
       if (cookie.indexOf(cookieName) === 0) {
         return cookie.substring(cookieName.length, cookie.length);
       }
     }
+    console.log('cookie',cookie);
+
     return null;
   }
   
