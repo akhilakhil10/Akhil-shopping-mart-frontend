@@ -108,25 +108,6 @@ export const register = (userData) => async (dispatch) => {
 // Load user
 export const loadUser = () => async (dispatch) => {
     try {
-        
-        // Get the value of the token cookie
-        function getCookieValue(cookieName) {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.startsWith(`${cookieName}=`)) {
-                    return cookie.substring(cookieName.length + 1, cookie.length);
-                }
-            }
-            return '';
-        }
-
-        // Retrieve the token cookie value
-        const token = getCookieValue('token');
-
-        // Use the token value as needed
-        console.log(`Token: ${token}`);
-/////////////////////////////////////////////////////////////////////////////////////////
         console.log('user request')
         dispatch({ type: LOAD_USER_REQUEST })
         const { data } = axios.get(`/api/v1/me`);
