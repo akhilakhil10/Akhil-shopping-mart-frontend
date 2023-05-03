@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserAddress } from '../../actions/userActions';
 import MetaData from '../layout/MetaData';
 import axios from'axios'
+import { getCookie } from '../../utils/getToken'
+
+    const token = getCookie('token');
 
 const UpdateAddress = ({ match, history }) => {
   const countriesList = Object.values(countries);
@@ -18,7 +21,13 @@ const UpdateAddress = ({ match, history }) => {
   const id=match.params.id
   useEffect(() => {
     const fetchAddress = async () => {
-      const { data } = await axios.get(`/api/v1/me/address/${id}`);
+              const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+      const { data } = await axios.get(`/api/v1/me/address/${id}`,config);
       setAddress(data.address.address);
       setCity(data.address.city);
       setPostalCode(data.address.postalCode);
