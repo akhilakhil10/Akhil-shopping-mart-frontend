@@ -139,7 +139,7 @@ export const loadUser = () => async (dispatch) => {
         };
 
         console.log('config',config)
-        const { data } = await axios.get('/api/v1/me');
+        const { data } = await axios.get('/api/v1/me',config);
 
         dispatch({
             type: LOAD_USER_SUCCESS,
