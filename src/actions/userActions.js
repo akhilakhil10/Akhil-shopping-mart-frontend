@@ -50,6 +50,7 @@ import {
 export const login = (email, password) => async (dispatch) => {
     try {
 
+
         console.log("hello user");
         dispatch({ type: LOGIN_REQUEST })
 
@@ -91,7 +92,7 @@ export const register = (userData) => async (dispatch) => {
         const { data } = await axios.post('/api/v1/register', userData, config)
         console.log("hello reogiste")
         dispatch({
-          
+
             type: REGISTER_USER_SUCCESS,
             payload: data.user
         })
@@ -107,11 +108,29 @@ export const register = (userData) => async (dispatch) => {
 // Load user
 export const loadUser = () => async (dispatch) => {
     try {
+        
+        // Get the value of the token cookie
+        function getCookieValue(cookieName) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(`${cookieName}=`)) {
+                    return cookie.substring(cookieName.length + 1, cookie.length);
+                }
+            }
+            return '';
+        }
 
+        // Retrieve the token cookie value
+        const token = getCookieValue('token');
+
+        // Use the token value as needed
+        console.log(`Token: ${token}`);
+/////////////////////////////////////////////////////////////////////////////////////////
         console.log('user request')
         dispatch({ type: LOAD_USER_REQUEST })
         const { data } = axios.get(`/api/v1/me`);
-        console.log(data,'load')
+        console.log(data, 'load')
         console.log(data);
         console.log('after user request')
         if (!data) {
