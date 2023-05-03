@@ -2,6 +2,8 @@ import React, { Fragment, useEffect } from 'react'
 
 import MetaData from '../layout/MetaData'
 import CheckoutSteps from './CheckoutSteps'
+import { getCookie } from '../../utils/getToken'
+
 
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,6 +11,8 @@ import { createOrder, clearErrors } from '../../actions/orderActions'
 import { clearCart } from '../../actions/cartActions'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 import axios from 'axios'
+
+    const token = getCookie('token');
 
 const options = {
     style: {
@@ -75,7 +79,9 @@ const Payment = ({ history }) => {
 
             const config = {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                       Authorization: `Bearer ${token}`,
+
                 }
             }
 
