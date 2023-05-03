@@ -108,27 +108,50 @@ export const register = (userData) => async (dispatch) => {
 // Load user
 export const loadUser = () => async (dispatch) => {
     try {
-        console.log('user request')
-        dispatch({ type: LOAD_USER_REQUEST })
-        const { data } = axios.get(`/api/v1/me`);
-        console.log(data, 'load')
-        console.log(data);
-        console.log('after user request')
-        if (!data) {
-            throw new Error('Data not found in API response');
+
+        // Get the value of the token cookie
+        function getCookieValue(cookieName) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(`${cookieName}=`)) {
+                    return cookie.substring(cookieName.length + 1, cookie.length);
+                }
+            }
+            return '';
         }
+
+        // Retrieve the token cookie value
+        const token = getCookieValue('token');
+
+
+        // Use the token value as needed
+        console.log(`Token: ${token}`);
+        localStorage.setItem('token', token)
+
+        /////////////////////////////////////////////////////////////////////////////////////////
+        dispatch({ type: LOAD_USER_REQUEST });
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        console.log('config',config)
+        const { data } = await axios.get('/api/v1/me', config);
+
         dispatch({
             type: LOAD_USER_SUCCESS,
-            payload: data.user
-        })
+            payload: data.user,
+        });
     } catch (error) {
-        console.log('user error')
         dispatch({
             type: LOAD_USER_FAIL,
-            payload: error.response.data.message || error.message
-        })
+            payload: error.response?.data?.message || error.message,
+        });
     }
-}
+};
 
 // Update profile
 export const updateProfile = (userData) => async (dispatch) => {
