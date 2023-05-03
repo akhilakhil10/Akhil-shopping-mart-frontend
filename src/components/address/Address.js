@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { getCookie } from '../utils/getToken'
+
+    const token = getCookie('token');
 
 
 const Address = () => {
@@ -8,14 +11,24 @@ const Address = () => {
 
     useEffect(() => {
         const fetchAddresses = async () => {
-            const { data } = await axios.get('/api/v1/me/address');
+                   const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+            const { data } = await axios.get('/api/v1/me/address',config);
             setAddresses(data.address);
         };
         fetchAddresses();
     }, []);
 
     const handleDelete = async (id) => {
-        await axios.delete(`/api/v1/me/address/${id}`);
+               const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        await axios.delete(`/api/v1/me/address/${id}`,config);
         setAddresses(addresses.filter((address) => address._id !== id));
     };
     // const id=addresses.address._id
