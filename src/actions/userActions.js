@@ -1,5 +1,6 @@
 import axios from 'axios'
 import url from '../App'
+import { getCookie } from '../utils/getToken'
 
 import {
     LOGIN_REQUEST,
@@ -47,19 +48,19 @@ import {
 } from '../constants/userConstants'
 
       // Get the value of the token cookie
-        function getCookieValue(cookieName) {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.startsWith(`${cookieName}=`)) {
-                    return cookie.substring(cookieName.length + 1, cookie.length);
-                }
-            }
-            return '';
-        }
+//         function getCookieValue(cookieName) {
+//             const cookies = document.cookie.split(';');
+//             for (let i = 0; i < cookies.length; i++) {
+//                 const cookie = cookies[i].trim();
+//                 if (cookie.startsWith(`${cookieName}=`)) {
+//                     return cookie.substring(cookieName.length + 1, cookie.length);
+//                 }
+//             }
+//             return '';
+//         }
 
         // Retrieve the token cookie value
-        const token = getCookieValue('token');
+        const token = getCookie('token');
 
 
         // Use the token value as needed
