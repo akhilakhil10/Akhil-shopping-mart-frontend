@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { getCookie } from '../utils/getToken'
+import { getCookie } from '../../utils/getToken'
 
     const token = getCookie('token');
 
