@@ -46,6 +46,27 @@ import {
     CLEAR_ERRORS
 } from '../constants/userConstants'
 
+      // Get the value of the token cookie
+        function getCookieValue(cookieName) {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(`${cookieName}=`)) {
+                    return cookie.substring(cookieName.length + 1, cookie.length);
+                }
+            }
+            return '';
+        }
+
+        // Retrieve the token cookie value
+        const token = getCookieValue('token');
+
+
+        // Use the token value as needed
+        console.log(`Token: ${token}`);
+        localStorage.setItem('token', token)
+
+
 // Login
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -109,27 +130,6 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
     try {
 
-        // Get the value of the token cookie
-        function getCookieValue(cookieName) {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.startsWith(`${cookieName}=`)) {
-                    return cookie.substring(cookieName.length + 1, cookie.length);
-                }
-            }
-            return '';
-        }
-
-        // Retrieve the token cookie value
-        const token = getCookieValue('token');
-
-
-        // Use the token value as needed
-        console.log(`Token: ${token}`);
-        localStorage.setItem('token', token)
-
-        /////////////////////////////////////////////////////////////////////////////////////////
         dispatch({ type: LOAD_USER_REQUEST });
 
         const config = {
