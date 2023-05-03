@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { getCookie } from '../utils/getToken'
 import {
     ALL_PRODUCTS_REQUEST,
     ALL_PRODUCTS_SUCCESS,
@@ -35,6 +35,7 @@ import {
 
 import url from '../App'
 
+ const token = getCookie('token');
 
 
 export const getProducts = (keyword = '', currentPage = 1, price, category) => async (dispatch) => {
@@ -85,7 +86,8 @@ export const newProduct = (productData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             }
         }
 
@@ -109,8 +111,14 @@ export const deleteProduct = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: DELETE_PRODUCT_REQUEST })
+        
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
 
-        const { data } = await axios.delete(`/api/v1/admin/product/${id}`)
+        const { data } = await axios.delete(`/api/v1/admin/product/${id}`,config)
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
@@ -133,7 +141,8 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             }
         }
 
@@ -180,7 +189,8 @@ export const newReview = (reviewData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             }
         }
 
@@ -226,8 +236,13 @@ export const getProductReviews = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: GET_REVIEWS_REQUEST })
+            const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
 
-        const { data } = await axios.get(`/api/v1/reviews?id=${id}`)
+        const { data } = await axios.get(`/api/v1/reviews?id=${id}`,config)
 
         dispatch({
             type: GET_REVIEWS_SUCCESS,
@@ -248,8 +263,13 @@ export const deleteReview = (id, productId) => async (dispatch) => {
     try {
 
         dispatch({ type: DELETE_REVIEW_REQUEST })
+            const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
 
-        const { data } = await axios.delete(`/api/v1/reviews?id=${id}&productId=${productId}`)
+        const { data } = await axios.delete(`/api/v1/reviews?id=${id}&productId=${productId}`,config)
 
         dispatch({
             type: DELETE_REVIEW_SUCCESS,
