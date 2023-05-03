@@ -6,6 +6,9 @@ import { useDispatch } from 'react-redux'
 import MetaData from '../layout/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 import { saveShippingInfo } from '../../actions/cartActions'
+import { getCookie } from '../../utils/getToken'
+
+    const token = getCookie('token');
 
 
 
@@ -22,8 +25,13 @@ const ShippingAddress = ({ match, history }) => {
 
     useEffect(() => {
         const fetchAddresses = async () => {
+                               const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
             console.log('id')
-            const { data } = await axios.get('/api/v1/me/address');
+            const { data } = await axios.get('/api/v1/me/address',config);
             setAddresses(data.address);
             console.log(data.address)
         };
@@ -34,7 +42,12 @@ const ShippingAddress = ({ match, history }) => {
 
     const dispatch = useDispatch();
     const handleSelectAddress = async (id) => {
-        const { data } = await axios.get(`/api/v1/me/address/${id}`);
+                           const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        const { data } = await axios.get(`/api/v1/me/address/${id}`,config);
         setAddress(data.address.address);
         setCity(data.address.city);
         setPostalCode(data.address.postalCode);
