@@ -148,7 +148,7 @@ const ProductDetails = ({ match }) => {
 
                             <div className="orpr">
                 <div className="pri">
-                <p className="card-text mr-2 per " style={{marginBottom: '0rem', marginTop: '0.3rem', fontSize: '1rem'}}>-% {Math.floor(((product.originalprice-product.price)/product.originalprice)*100)}</p>
+                <p className="card-text mr-2 per " style={{marginBottom: '0rem', marginTop: '0.3rem', fontSize: '1rem'}}>{Math.floor(((product.originalprice-product.price)/product.originalprice)*100)} % off</p>
             <p className="card-text mr-4" style={{marginBottom: '0rem'}}>₹{product.price}</p></div>
             <p className="card-text or" style={{fontSize: '1rem'}}>MRP ₹{product.originalprice}</p>
             </div>                            <div className="stockCounter d-inline">
