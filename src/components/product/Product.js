@@ -28,10 +28,11 @@ const Product = ({ product, col }) => {
                 </div>
                 <div className="orpr">
                     <div className="pri">
-                        <p className="card-text mr-2 per " style={{ marginBottom: '0rem', marginTop: '0.3rem' }}>- </p>
+                        <p className="card-text mr-2 per " style={{ marginBottom: '0rem', marginTop: '0.3rem' }}>{Math.floor(((product.originalprice - product.price) / product.originalprice) * 100)} </p>
                         <p className="card-text mr-2 per " style={{ marginBottom: '0rem', marginTop: '0.3rem' }}>% </p>
-                        <p className="card-text mr-2 per " style={{ marginBottom: '0rem', marginTop: '0.3rem' }}>{Math.floor(((product.originalprice - product.price) / product.originalprice) * 100)}</p>
-                        <p className="card-text mr-4 sp" style={{ marginBottom: '0rem', marginTop: '5px' }}>₹{product.price}</p></div>
+                        <p className="card-text mr-2 per " style={{ marginBottom: '0rem', marginTop: '0.3rem' }}> off</p>                    
+
+                       <p className="card-text mr-4 sp" style={{ marginBottom: '0rem', marginTop: '5px' }}>₹{product.price}</p></div>
                     <p className="card-text or" style={{ fontSize: '1rem' }}>MRP ₹{product.originalprice}</p>
                 </div>
                 <Link to={`/products/${product._id}`} onClick={() => dispatch(getProductDetails(product._id))} id="view_btn" className="btn btn-block">View Details</Link>
