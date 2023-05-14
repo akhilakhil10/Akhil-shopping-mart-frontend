@@ -88,6 +88,8 @@ export const login = (email, password) => async (dispatch) => {
 
         // Set the cookie with the token
 document.cookie = `token=${token}; path=/; expires=${expires.toUTCString()}; domain=onrender.com; secure; SameSite=none`;
+        
+        console.log(document.cookie);
 
         dispatch({
             type: LOGIN_SUCCESS,
