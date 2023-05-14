@@ -71,6 +71,8 @@ import {
 // Login
 export const login = (email, password) => async (dispatch) => {
     try {
+        
+        console.log("hello user");
         dispatch({ type: LOGIN_REQUEST })
 
         const config = {
@@ -81,20 +83,15 @@ export const login = (email, password) => async (dispatch) => {
 
         const { data } = await axios.post(`/api/v1/login`, { email, password }, config)
 
-        // Set cookie expiration time based on an environment variable
-        const expires = new Date(
-            Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
-        );
-
-        // Set the cookie with the token
-document.cookie = `token=${token}; path=/; expires=${expires.toUTCString()}; domain=onrender.com; secure; SameSite=none`;
-        
-        console.log(document.cookie);
 
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data.user
         })
+        
+             console.log(`Token in login: ${token}`);
+
+        localStorage.setItem('token',` ${token}`)
 
     } catch (error) {
         dispatch({
